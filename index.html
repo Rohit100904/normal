@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Cutest Human 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(135deg,#ffd6e8,#ffeaf4);
+    overflow-x:hidden;
+    text-align:center;
+    color:#ff4d88;
+}
+
+/* Floating Hearts */
+.heart{
+    position:fixed;
+    bottom:-10px;
+    font-size:20px;
+    animation:floatUp 6s linear infinite;
+}
+
+@keyframes floatUp{
+    0%{transform:translateY(0);opacity:1;}
+    100%{transform:translateY(-110vh);opacity:0;}
+}
+
+/* HERO */
+.hero{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.hero h1{
+    font-family:'Pacifico',cursive;
+    font-size:3rem;
+}
+
+.hero p{
+    margin-top:15px;
+    font-size:1.2rem;
+}
+
+/* GALLERY */
+.gallery{
+    padding:60px 20px;
+}
+
+.gallery h2{
+    font-family:'Pacifico',cursive;
+    margin-bottom:30px;
+}
+
+.photos{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.photos img{
+    width:220px;
+    height:260px;
+    object-fit:cover;
+    background:white;
+    padding:10px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(255,105,180,0.3);
+    transition:0.4s;
+}
+
+.photos img:hover{
+    transform:rotate(-5deg) scale(1.05);
+}
+
+/* LOVE LETTER */
+.letter{
+    padding:60px 20px;
+    max-width:700px;
+    margin:auto;
+    font-size:1.1rem;
+    line-height:1.6;
+}
+
+/* PROPOSAL */
+.proposal{
+    padding:60px 20px;
+}
+
+.proposal h2{
+    font-family:'Pacifico',cursive;
+    font-size:2.3rem;
+}
+
+.buttons{
+    margin-top:30px;
+    position:relative;
+}
+
+button{
+    padding:14px 30px;
+    font-size:1rem;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    margin:10px;
+    transition:0.3s;
+}
+
+#yesBtn{
+    background:#ff4d88;
+    color:white;
+    box-shadow:0 0 15px #ff4d88;
+    animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+    from{box-shadow:0 0 10px #ff4d88;}
+    to{box-shadow:0 0 25px #ff1493;}
+}
+
+#noBtn{
+    background:white;
+    color:#ff4d88;
+    position:absolute;
+}
+
+/* FOOTER */
+.footer{
+    margin-top:60px;
+    padding:20px;
+    font-size:0.9rem;
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+    <h1>Hi My Baby 💕</h1>
+    <p>You make my world brighter every single day 🌸</p>
+</section>
+
+<section class="gallery">
+    <h2>Your Cutest Memories 🧸</h2>
+    <div class="photos">
+        <img src="photo1.jpg">
+        <img src="photo2.jpg">
+        <img src="photo3.jpg">
+    </div>
+</section>
+
+<section class="letter">
+    <p>
+        From the moment you came into my life, everything became softer, happier, and more beautiful.  
+        Your smile is my favorite view. Your laugh is my favorite sound.  
+        I don’t just like you… I choose you. Every single day. 💖
+    </p>
+</section>
+
+<section class="proposal">
+    <h2>Will You Be My Valentine? 💌💍</h2>
+    <div class="buttons">
+        <button id="yesBtn" onclick="sayYes()">YESSS 💗</button>
+        <button id="noBtn">No 😳</button>
+    </div>
+</section>
+
+<div class="footer">
+    Made with infinite love ♾️💞
+</div>
+
+<script>
+let moveCount=0;
+const noBtn=document.getElementById("noBtn");
+const yesBtn=document.getElementById("yesBtn");
+
+function moveNo(){
+    const maxX=window.innerWidth-noBtn.offsetWidth-20;
+    const maxY=window.innerHeight-noBtn.offsetHeight-20;
+    const x=Math.random()*maxX;
+    const y=Math.random()*maxY;
+    noBtn.style.position="fixed";
+    noBtn.style.left=x+"px";
+    noBtn.style.top=y+"px";
+    moveCount++;
+
+    if(moveCount>3){
+        yesBtn.style.transform="scale(1.2)";
+    }
+}
+
+noBtn.addEventListener("mouseover",moveNo);
+noBtn.addEventListener("click",function(e){
+    e.preventDefault();
+    moveNo();
+});
+
+/* YES Celebration */
+function sayYes(){
+    document.body.innerHTML=`
+    <div style="height:100vh;display:flex;justify-content:center;align-items:center;
+    background:linear-gradient(135deg,#ff99cc,#ff4d88);color:white;text-align:center;flex-direction:column;">
+        <h1 style="font-family:Pacifico;font-size:3rem;">She Said YES 💕💍</h1>
+        <p style="font-size:1.5rem;margin-top:15px;">Best Day of My Life 🥺💖</p>
+    </div>
+    `;
+}
+
+/* Floating hearts */
+function createHeart(){
+    const heart=document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML="💖";
+    heart.style.left=Math.random()*100+"vw";
+    document.body.appendChild(heart);
+    setTimeout(()=>{heart.remove();},6000);
+}
+
+setInterval(createHeart,400);
+</script>
+
+</body>
+</html>
