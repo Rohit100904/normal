@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For My Love 💖</title>
+<title>For My Forever 💖</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
@@ -18,44 +18,58 @@ body{
     overflow-x:hidden;
 }
 
-/* HERO */
-.hero{
-    padding:60px 20px 30px;
+/* Floating Hearts */
+.heart{
+    position:fixed;
+    bottom:-20px;
+    font-size:18px;
+    animation:floatUp 6s linear infinite;
+    pointer-events:none;
+}
+@keyframes floatUp{
+    0%{transform:translateY(0);opacity:1;}
+    100%{transform:translateY(-120vh);opacity:0;}
 }
 
+/* HERO */
+.hero{
+    padding:80px 20px 40px;
+}
 .hero h1{
     font-family:'Pacifico',cursive;
     font-size:clamp(2rem,6vw,3rem);
 }
-
 .hero p{
     margin-top:10px;
     font-size:clamp(1rem,3vw,1.2rem);
 }
 
-/* CAROUSEL SECTION */
+/* GLASS CARD */
+.glass{
+    backdrop-filter:blur(15px);
+    background:rgba(255,255,255,0.4);
+    border-radius:20px;
+    padding:20px;
+    box-shadow:0 10px 30px rgba(255,105,180,0.2);
+}
+
+/* CAROUSEL */
 .carousel-section{
     padding:30px 15px;
 }
-
 .carousel-container{
-    max-width:600px;
+    max-width:650px;
     margin:auto;
 }
-
 .carousel{
     position:relative;
     overflow:hidden;
     border-radius:20px;
-    background:white;
-    box-shadow:0 15px 35px rgba(255,105,180,0.25);
 }
-
 .slides{
     display:flex;
     transition:transform 0.5s ease;
 }
-
 .slide{
     min-width:100%;
     display:flex;
@@ -63,7 +77,6 @@ body{
     align-items:center;
     padding:10px;
 }
-
 .slide img{
     width:100%;
     height:auto;
@@ -79,30 +92,27 @@ body{
     transform:translateY(-50%);
     background:rgba(255,255,255,0.8);
     border:none;
-    font-size:1.5rem;
+    font-size:1.4rem;
     padding:6px 12px;
     border-radius:50%;
     cursor:pointer;
 }
-
 .prev{left:10px;}
 .next{right:10px;}
 
 /* Dots */
 .dots{
-    margin-top:15px;
+    margin-top:12px;
 }
-
 .dot{
     height:8px;
     width:8px;
     background:#ffb6d9;
     border-radius:50%;
     display:inline-block;
-    margin:5px;
+    margin:4px;
     cursor:pointer;
 }
-
 .active-dot{
     background:#ff4d88;
 }
@@ -110,22 +120,19 @@ body{
 /* LETTER */
 .letter{
     max-width:650px;
-    margin:40px auto;
-    padding:0 20px;
-    line-height:1.6;
+    margin:50px auto;
+    padding:20px;
 }
 
 /* PROPOSAL */
 .proposal{
-    padding:40px 20px;
+    padding:40px 20px 100px;
 }
-
 .buttons{
     position:relative;
     min-height:80px;
     margin-top:20px;
 }
-
 button{
     padding:12px 30px;
     border:none;
@@ -133,109 +140,135 @@ button{
     cursor:pointer;
     margin:10px;
     font-size:1rem;
+    transition:0.3s ease;
 }
-
 #yesBtn{
     background:#ff4d88;
     color:white;
 }
-
 #yesBtn:hover{
     transform:scale(1.1);
 }
-
 #noBtn{
     background:white;
     color:#ff4d88;
     position:absolute;
 }
 
-/* Floating Hearts */
-.heart{
+/* Sticky Music Button */
+#musicBtn{
     position:fixed;
-    bottom:-20px;
-    font-size:18px;
-    animation:floatUp 6s linear infinite;
+    bottom:20px;
+    right:20px;
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    border:none;
+    background:#ff4d88;
+    color:white;
+    font-size:22px;
+    cursor:pointer;
+    box-shadow:0 0 15px rgba(255,77,136,0.6);
+    z-index:9999;
+}
+#musicBtn.playing{
+    animation:pulse 1.5s infinite;
+}
+@keyframes pulse{
+    0%{box-shadow:0 0 10px rgba(255,77,136,0.5);}
+    50%{box-shadow:0 0 25px rgba(255,77,136,0.9);}
+    100%{box-shadow:0 0 10px rgba(255,77,136,0.5);}
 }
 
-@keyframes floatUp{
-    0%{transform:translateY(0);opacity:1;}
-    100%{transform:translateY(-120vh);opacity:0;}
+/* Confetti */
+.confetti{
+    position:fixed;
+    width:10px;
+    height:10px;
+    background:red;
+    top:0;
+    animation:fall 3s linear infinite;
+}
+@keyframes fall{
+    to{transform:translateY(100vh) rotate(360deg);}
 }
 </style>
 </head>
 
 <body>
 
-<!-- Music -->
 <audio id="bgMusic" loop>
     <source src="arz.mp3" type="audio/mpeg">
 </audio>
 
 <section class="hero">
     <h1>Hi My Love 💕</h1>
-    <p>You make my life magical ✨</p>
+    <p>You are my favorite person in this universe ✨</p>
 </section>
 
 <section class="carousel-section">
-    <div class="carousel-container">
-        <div class="carousel">
-            <div class="slides" id="slides">
+<div class="carousel-container glass">
+<div class="carousel">
+<div class="slides" id="slides">
 
-                <div class="slide"><img src="1.jpg"></div>
-                <div class="slide"><img src="2.jpg"></div>
-                <div class="slide"><img src="3.jpg"></div>
-                <div class="slide"><img src="4.jpg"></div>
-                <div class="slide"><img src="5.jpg"></div>
-                <div class="slide"><img src="6.jpg"></div>
-                <div class="slide"><img src="7.jpg"></div>
-            </div>
+<div class="slide"><img src="1.jpg"></div>
+<div class="slide"><img src="2.jpg"></div>
+<div class="slide"><img src="3.jpg"></div>
+<div class="slide"><img src="4.jpg"></div>
+<div class="slide"><img src="5.jpg"></div>
+<div class="slide"><img src="6.jpg"></div>
+<div class="slide"><img src="7.jpg"></div>
 
-            <button class="arrow prev" onclick="prevSlide()">❮</button>
-            <button class="arrow next" onclick="nextSlide()">❯</button>
-        </div>
-
-        <div class="dots" id="dots"></div>
-    </div>
+</div>
+<button class="arrow prev" onclick="prevSlide()">❮</button>
+<button class="arrow next" onclick="nextSlide()">❯</button>
+</div>
+<div class="dots" id="dots"></div>
+</div>
 </section>
 
-<section class="letter">
-    <p>
-        Every moment with you feels special.  
-        Every smile of yours makes my day better.  
-        I don’t just want today with you…  
-        I want forever. 💖
-    </p>
+<section class="letter glass">
+<p>
+Every moment with you feels magical.  
+Every smile of yours brightens my world.  
+I don’t just want today with you…  
+I want forever. 💖
+</p>
 </section>
 
 <section class="proposal">
-    <h2 style="font-family:Pacifico;">Will You Be My Valentine? 💌</h2>
-    <div class="buttons">
-        <button id="yesBtn" onclick="sayYes()">YES 💗</button>
-        <button id="noBtn">No 😳</button>
-    </div>
+<h2 style="font-family:Pacifico;">Will You Be My Valentine? 💌</h2>
+<div class="buttons">
+<button id="yesBtn" onclick="sayYes()">YES 💗</button>
+<button id="noBtn">No 😳</button>
+</div>
 </section>
+
+<button id="musicBtn">🎵</button>
 
 <script>
 
-/* MUSIC FIX */
+/* MUSIC BUTTON */
 const music=document.getElementById("bgMusic");
-let musicStarted=false;
+const musicBtn=document.getElementById("musicBtn");
 
-function startMusic(){
-    if(!musicStarted){
-        music.play().catch(()=>{});
-        musicStarted=true;
+musicBtn.addEventListener("click",()=>{
+    if(music.paused){
+        music.play();
+        musicBtn.classList.add("playing");
+        musicBtn.innerHTML="⏸";
+    }else{
+        music.pause();
+        musicBtn.classList.remove("playing");
+        musicBtn.innerHTML="🎵";
     }
-}
-document.addEventListener("click",startMusic);
-document.addEventListener("touchstart",startMusic);
+});
 
 /* CAROUSEL */
 const slides=document.getElementById("slides");
 const dotsContainer=document.getElementById("dots");
-const totalSlides=10;
 let index=0;
+const totalSlides=7;
 
 for(let i=0;i<totalSlides;i++){
     const dot=document.createElement("span");
@@ -249,59 +282,46 @@ function showSlide(){
     slides.style.transform=`translateX(-${index*100}%)`;
     updateDots();
 }
-
-function nextSlide(){
-    index=(index+1)%totalSlides;
-    showSlide();
-}
-
-function prevSlide(){
-    index=(index-1+totalSlides)%totalSlides;
-    showSlide();
-}
-
-function goToSlide(i){
-    index=i;
-    showSlide();
-}
-
+function nextSlide(){index=(index+1)%totalSlides;showSlide();}
+function prevSlide(){index=(index-1+totalSlides)%totalSlides;showSlide();}
+function goToSlide(i){index=i;showSlide();}
 function updateDots(){
-    const dots=document.querySelectorAll(".dot");
-    dots.forEach(dot=>dot.classList.remove("active-dot"));
-    dots[index].classList.add("active-dot");
+    document.querySelectorAll(".dot").forEach(d=>d.classList.remove("active-dot"));
+    document.querySelectorAll(".dot")[index].classList.add("active-dot");
 }
-
 setInterval(nextSlide,4000);
 
 /* NO BUTTON */
 const noBtn=document.getElementById("noBtn");
-const yesBtn=document.getElementById("yesBtn");
-
-function moveNo(){
-    const maxX=window.innerWidth-noBtn.offsetWidth-10;
-    const maxY=window.innerHeight-noBtn.offsetHeight-10;
-    noBtn.style.left=Math.random()*maxX+"px";
-    noBtn.style.top=Math.random()*maxY+"px";
-    noBtn.style.position="fixed";
-}
 noBtn.addEventListener("mouseover",moveNo);
-noBtn.addEventListener("click",function(e){
-    e.preventDefault();
-    moveNo();
-});
+noBtn.addEventListener("click",e=>{e.preventDefault();moveNo();});
+function moveNo(){
+    noBtn.style.position="fixed";
+    noBtn.style.left=Math.random()*(window.innerWidth-100)+"px";
+    noBtn.style.top=Math.random()*(window.innerHeight-50)+"px";
+}
 
-/* YES SCREEN */
+/* YES SCREEN + CONFETTI */
 function sayYes(){
+    music.play();
     document.body.innerHTML=`
     <div style="height:100vh;display:flex;justify-content:center;align-items:center;
-    background:linear-gradient(135deg,#ff99cc,#ff4d88);color:white;text-align:center;flex-direction:column;">
-        <h1 style="font-family:Pacifico;font-size:2.5rem;">She Said YES 💕</h1>
-        <p style="margin-top:15px;font-size:1.3rem;">Happiest Moment Ever 🥺💖</p>
-    </div>
-    `;
+    background:linear-gradient(135deg,#ff99cc,#ff4d88);
+    color:white;text-align:center;flex-direction:column;">
+    <h1 style="font-family:Pacifico;font-size:2.5rem;">She Said YES 💕</h1>
+    <p style="margin-top:15px;font-size:1.3rem;">Best Day Ever 🥺💖</p>
+    </div>`;
+    for(let i=0;i<100;i++){
+        const conf=document.createElement("div");
+        conf.classList.add("confetti");
+        conf.style.left=Math.random()*100+"vw";
+        conf.style.background=`hsl(${Math.random()*360},70%,60%)`;
+        conf.style.animationDuration=(Math.random()*2+2)+"s";
+        document.body.appendChild(conf);
+    }
 }
 
-/* HEARTS */
+/* FLOATING HEARTS */
 function createHeart(){
     const heart=document.createElement("div");
     heart.classList.add("heart");
@@ -313,6 +333,5 @@ function createHeart(){
 setInterval(createHeart,500);
 
 </script>
-
 </body>
 </html>
