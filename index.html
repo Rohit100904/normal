@@ -3,16 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For My Favorite Person 💖</title>
+<title>For My Forever 💖</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
     font-family:'Poppins',sans-serif;
@@ -56,43 +52,75 @@ body{
     font-size:clamp(1rem,3vw,1.3rem);
 }
 
-/* GALLERY */
-.gallery{
+/* CAROUSEL */
+.carousel-section{
     padding:60px 20px;
 }
 
-.gallery h2{
-    font-family:'Pacifico',cursive;
-    margin-bottom:30px;
-    font-size:clamp(1.8rem,5vw,2.5rem);
-}
-
-.photos{
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    flex-wrap:wrap;
-}
-
-.photos img{
-    width:100%;
-    max-width:260px;
-    height:320px;
-    object-fit:cover;
-    background:white;
-    padding:10px;
+.carousel{
+    position:relative;
+    max-width:900px;
+    margin:auto;
+    overflow:hidden;
     border-radius:20px;
-    box-shadow:0 10px 30px rgba(255,105,180,0.3);
-    transition:0.4s;
+    box-shadow:0 15px 40px rgba(255,105,180,0.3);
+    background:white;
+    padding:15px;
 }
 
-.photos img:hover{
-    transform:scale(1.05) rotate(-3deg);
+.slides{
+    display:flex;
+    transition:transform 0.6s ease-in-out;
+    align-items:center;
+}
+
+.slides img{
+    width:100%;
+    height:auto;              /* Keeps original ratio */
+    max-height:80vh;          /* Prevents huge images */
+    object-fit:contain;       /* No cropping */
+    flex-shrink:0;
+    border-radius:15px;
+}
+
+/* Arrows */
+.arrow{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:2rem;
+    background:rgba(255,255,255,0.7);
+    border:none;
+    cursor:pointer;
+    padding:8px 14px;
+    border-radius:50%;
+}
+
+.prev{left:10px;}
+.next{right:10px;}
+
+/* Dots */
+.dots{
+    margin-top:15px;
+}
+
+.dot{
+    display:inline-block;
+    height:10px;
+    width:10px;
+    margin:5px;
+    background:#ffb6d9;
+    border-radius:50%;
+    cursor:pointer;
+}
+
+.active-dot{
+    background:#ff4d88;
 }
 
 /* LOVE LETTER */
 .letter{
-    max-width:750px;
+    max-width:700px;
     margin:50px auto;
     padding:0 20px;
     font-size:clamp(1rem,3vw,1.15rem);
@@ -102,18 +130,6 @@ body{
 /* PROPOSAL */
 .proposal{
     padding:60px 20px;
-    position:relative;
-}
-
-.proposal h2{
-    font-family:'Pacifico',cursive;
-    font-size:clamp(1.8rem,5vw,2.5rem);
-}
-
-.buttons{
-    margin-top:30px;
-    min-height:80px;
-    position:relative;
 }
 
 button{
@@ -129,7 +145,6 @@ button{
 #yesBtn{
     background:#ff4d88;
     color:white;
-    box-shadow:0 0 15px #ff4d88;
 }
 
 #yesBtn:hover{
@@ -142,70 +157,125 @@ button{
     position:absolute;
 }
 
-/* FOOTER */
-.footer{
-    padding:30px;
-    font-size:0.9rem;
+.buttons{
+    margin-top:30px;
+    min-height:80px;
+    position:relative;
 }
 </style>
 </head>
 
 <body>
 
+<!-- Background Music -->
+<audio autoplay loop>
+    <source src="arz.mp3" type="audio/mpeg">
+</audio>
+
 <section class="hero">
     <h1>Hi My Love 💕</h1>
-    <p>You make my world softer, brighter and happier 🌸</p>
+    <p>You are my favorite person in this whole universe 🌸</p>
 </section>
 
-<section class="gallery">
-    <h2>Our Beautiful Memories 🧸</h2>
-    <div class="photos">
-        <img src="photo1.jpg">
-        <img src="photo2.jpg">
-        <img src="photo3.jpg">
+<section class="carousel-section">
+    <h2 style="font-family:Pacifico;">Our Beautiful Journey 🧸</h2>
+
+    <div class="carousel">
+        <div class="slides" id="slides">
+            <img src="1.jpg">
+            <img src="2.jpg">
+            <img src="3.jpg">
+            <img src="4.jpg">
+            <img src="5.jpg">
+            <img src="6.jpg">
+            <img src="7.jpg">
+            <!-- <img src="8.jpg">
+            <img src="9.jpg">
+            <img src="10.jpg"> -->
+        </div>
+
+        <button class="arrow prev" onclick="prevSlide()">❮</button>
+        <button class="arrow next" onclick="nextSlide()">❯</button>
     </div>
+
+    <div class="dots" id="dots"></div>
 </section>
 
 <section class="letter">
     <p>
-        Every day with you feels like my favorite chapter of a love story.  
-        Your smile fixes my worst days.  
-        Your presence makes everything better.  
+        Every moment with you feels magical.  
+        Every laugh we share becomes my favorite memory.  
         I don’t just want today with you…  
-        I want every tomorrow with you too. 💖
+        I want every tomorrow too. 💖
     </p>
 </section>
 
 <section class="proposal">
-    <h2>Will You Be My Valentine? 💌💍</h2>
+    <h2 style="font-family:Pacifico;">Will You Be My Valentine? 💌💍</h2>
     <div class="buttons">
         <button id="yesBtn" onclick="sayYes()">YES 💗</button>
         <button id="noBtn">No 😳</button>
     </div>
 </section>
 
-<div class="footer">
-    Made with infinite love ♾️💞
-</div>
-
 <script>
-let moveCount=0;
+/* Carousel */
+const slides=document.getElementById("slides");
+const dotsContainer=document.getElementById("dots");
+const totalSlides=10;
+let index=0;
+
+for(let i=0;i<totalSlides;i++){
+    const dot=document.createElement("span");
+    dot.classList.add("dot");
+    dot.onclick=()=>goToSlide(i);
+    dotsContainer.appendChild(dot);
+}
+updateDots();
+
+function showSlide(){
+    slides.style.transform=`translateX(-${index*100}%)`;
+    updateDots();
+}
+
+function nextSlide(){
+    index=(index+1)%totalSlides;
+    showSlide();
+}
+
+function prevSlide(){
+    index=(index-1+totalSlides)%totalSlides;
+    showSlide();
+}
+
+function goToSlide(i){
+    index=i;
+    showSlide();
+}
+
+function updateDots(){
+    const dots=document.querySelectorAll(".dot");
+    dots.forEach(dot=>dot.classList.remove("active-dot"));
+    dots[index].classList.add("active-dot");
+}
+
+setInterval(nextSlide,4000);
+
+/* NO Button Jump */
 const noBtn=document.getElementById("noBtn");
 const yesBtn=document.getElementById("yesBtn");
+let moveCount=0;
 
 function moveNo(){
     const maxX=window.innerWidth-noBtn.offsetWidth-10;
     const maxY=window.innerHeight-noBtn.offsetHeight-10;
-
-    const x=Math.max(0,Math.random()*maxX);
-    const y=Math.max(0,Math.random()*maxY);
-
+    const x=Math.random()*maxX;
+    const y=Math.random()*maxY;
     noBtn.style.position="fixed";
     noBtn.style.left=x+"px";
     noBtn.style.top=y+"px";
-
     moveCount++;
-    if(moveCount>=3){
+    if(moveCount>3){
         yesBtn.style.transform="scale(1.2)";
     }
 }
@@ -216,26 +286,27 @@ noBtn.addEventListener("click",function(e){
     moveNo();
 });
 
+/* YES Screen */
 function sayYes(){
     document.body.innerHTML=`
     <div style="height:100vh;display:flex;justify-content:center;align-items:center;
     background:linear-gradient(135deg,#ff99cc,#ff4d88);color:white;text-align:center;flex-direction:column;">
-        <h1 style="font-family:Pacifico;font-size:clamp(2rem,6vw,3rem);">She Said YES 💕💍</h1>
-        <p style="font-size:clamp(1rem,4vw,1.5rem);margin-top:20px;">
+        <h1 style="font-family:Pacifico;font-size:3rem;">She Said YES 💕💍</h1>
+        <p style="margin-top:20px;font-size:1.4rem;">
         Happiest Moment of My Life 🥺💖
         </p>
     </div>
     `;
 }
 
-/* Floating hearts */
+/* Floating Hearts */
 function createHeart(){
     const heart=document.createElement("div");
     heart.classList.add("heart");
     heart.innerHTML="💖";
     heart.style.left=Math.random()*100+"vw";
     document.body.appendChild(heart);
-    setTimeout(()=>{heart.remove();},6000);
+    setTimeout(()=>heart.remove(),6000);
 }
 setInterval(createHeart,400);
 </script>
