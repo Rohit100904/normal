@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For My Forever 💖</title>
+<title>For My Love 💖</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
@@ -18,68 +18,57 @@ body{
     overflow-x:hidden;
 }
 
-/* Floating Hearts */
-.heart{
-    position:fixed;
-    bottom:-20px;
-    font-size:20px;
-    animation:floatUp 6s linear infinite;
-    pointer-events:none;
-}
-
-@keyframes floatUp{
-    0%{transform:translateY(0);opacity:1;}
-    100%{transform:translateY(-120vh);opacity:0;}
-}
-
 /* HERO */
 .hero{
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    padding:40px 20px;
+    padding:60px 20px 30px;
 }
 
 .hero h1{
     font-family:'Pacifico',cursive;
-    font-size:clamp(2rem,6vw,3.5rem);
+    font-size:clamp(2rem,6vw,3rem);
 }
 
 .hero p{
-    margin-top:15px;
-    font-size:clamp(1rem,3vw,1.3rem);
+    margin-top:10px;
+    font-size:clamp(1rem,3vw,1.2rem);
 }
 
-/* CAROUSEL */
+/* CAROUSEL SECTION */
 .carousel-section{
-    padding:60px 20px;
+    padding:30px 15px;
+}
+
+.carousel-container{
+    max-width:600px;
+    margin:auto;
 }
 
 .carousel{
     position:relative;
-    max-width:900px;
-    margin:auto;
     overflow:hidden;
     border-radius:20px;
-    box-shadow:0 15px 40px rgba(255,105,180,0.3);
     background:white;
-    padding:15px;
+    box-shadow:0 15px 35px rgba(255,105,180,0.25);
 }
 
 .slides{
     display:flex;
-    transition:transform 0.6s ease-in-out;
-    align-items:center;
+    transition:transform 0.5s ease;
 }
 
-.slides img{
+.slide{
+    min-width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:10px;
+}
+
+.slide img{
     width:100%;
-    height:auto;              /* Keeps original ratio */
-    max-height:80vh;          /* Prevents huge images */
-    object-fit:contain;       /* No cropping */
-    flex-shrink:0;
+    height:auto;
+    max-height:70vh;
+    object-fit:contain;
     border-radius:15px;
 }
 
@@ -88,12 +77,12 @@ body{
     position:absolute;
     top:50%;
     transform:translateY(-50%);
-    font-size:2rem;
-    background:rgba(255,255,255,0.7);
+    background:rgba(255,255,255,0.8);
     border:none;
-    cursor:pointer;
-    padding:8px 14px;
+    font-size:1.5rem;
+    padding:6px 12px;
     border-radius:50%;
+    cursor:pointer;
 }
 
 .prev{left:10px;}
@@ -105,12 +94,12 @@ body{
 }
 
 .dot{
-    display:inline-block;
-    height:10px;
-    width:10px;
-    margin:5px;
+    height:8px;
+    width:8px;
     background:#ffb6d9;
     border-radius:50%;
+    display:inline-block;
+    margin:5px;
     cursor:pointer;
 }
 
@@ -118,28 +107,32 @@ body{
     background:#ff4d88;
 }
 
-/* LOVE LETTER */
+/* LETTER */
 .letter{
-    max-width:700px;
-    margin:50px auto;
+    max-width:650px;
+    margin:40px auto;
     padding:0 20px;
-    font-size:clamp(1rem,3vw,1.15rem);
-    line-height:1.7;
+    line-height:1.6;
 }
 
 /* PROPOSAL */
 .proposal{
-    padding:60px 20px;
+    padding:40px 20px;
+}
+
+.buttons{
+    position:relative;
+    min-height:80px;
+    margin-top:20px;
 }
 
 button{
-    padding:14px 35px;
-    font-size:1rem;
+    padding:12px 30px;
     border:none;
-    border-radius:40px;
+    border-radius:30px;
     cursor:pointer;
     margin:10px;
-    transition:0.3s ease;
+    font-size:1rem;
 }
 
 #yesBtn{
@@ -157,61 +150,66 @@ button{
     position:absolute;
 }
 
-.buttons{
-    margin-top:30px;
-    min-height:80px;
-    position:relative;
+/* Floating Hearts */
+.heart{
+    position:fixed;
+    bottom:-20px;
+    font-size:18px;
+    animation:floatUp 6s linear infinite;
+}
+
+@keyframes floatUp{
+    0%{transform:translateY(0);opacity:1;}
+    100%{transform:translateY(-120vh);opacity:0;}
 }
 </style>
 </head>
 
 <body>
 
-<!-- Background Music -->
-<audio autoplay loop>
+<!-- Music -->
+<audio id="bgMusic" loop>
     <source src="arz.mp3" type="audio/mpeg">
 </audio>
 
 <section class="hero">
     <h1>Hi My Love 💕</h1>
-    <p>You are my favorite person in this whole universe 🌸</p>
+    <p>You make my life magical ✨</p>
 </section>
 
 <section class="carousel-section">
-    <h2 style="font-family:Pacifico;">Our Beautiful Journey 🧸</h2>
+    <div class="carousel-container">
+        <div class="carousel">
+            <div class="slides" id="slides">
 
-    <div class="carousel">
-        <div class="slides" id="slides">
-            <img src="1.jpg">
-            <img src="2.jpg">
-            <img src="3.jpg">
-            <img src="4.jpg">
-            <img src="5.jpg">
-            <img src="6.jpg">
-            <img src="7.jpg">
-            <!-- <img src="8.jpg">
-            <img src="9.jpg">
-            <img src="10.jpg"> -->
+                <div class="slide"><img src="1.jpg"></div>
+                <div class="slide"><img src="2.jpg"></div>
+                <div class="slide"><img src="3.jpg"></div>
+                <div class="slide"><img src="4.jpg"></div>
+                <div class="slide"><img src="5.jpg"></div>
+                <div class="slide"><img src="6.jpg"></div>
+                <div class="slide"><img src="7.jpg"></div>
+            </div>
+
+            <button class="arrow prev" onclick="prevSlide()">❮</button>
+            <button class="arrow next" onclick="nextSlide()">❯</button>
         </div>
 
-        <button class="arrow prev" onclick="prevSlide()">❮</button>
-        <button class="arrow next" onclick="nextSlide()">❯</button>
+        <div class="dots" id="dots"></div>
     </div>
-
-    <div class="dots" id="dots"></div>
 </section>
 
 <section class="letter">
     <p>
-        Every moment with you feels magical.  
-        Every laugh we share becomes my favorite memory.  
+        Every moment with you feels special.  
+        Every smile of yours makes my day better.  
         I don’t just want today with you…  
-        I want every tomorrow too. 💖
+        I want forever. 💖
     </p>
 </section>
 
 <section class="proposal">
-    <h2 style="font-family:Pacifico;">Will You Be My Valentine? 💌💍</h2>
+    <h2 style="font-family:Pacifico;">Will You Be My Valentine? 💌</h2>
     <div class="buttons">
         <button id="yesBtn" onclick="sayYes()">YES 💗</button>
         <button id="noBtn">No 😳</button>
@@ -219,7 +217,21 @@ button{
 </section>
 
 <script>
-/* Carousel */
+
+/* MUSIC FIX */
+const music=document.getElementById("bgMusic");
+let musicStarted=false;
+
+function startMusic(){
+    if(!musicStarted){
+        music.play().catch(()=>{});
+        musicStarted=true;
+    }
+}
+document.addEventListener("click",startMusic);
+document.addEventListener("touchstart",startMusic);
+
+/* CAROUSEL */
 const slides=document.getElementById("slides");
 const dotsContainer=document.getElementById("dots");
 const totalSlides=10;
@@ -261,45 +273,35 @@ function updateDots(){
 
 setInterval(nextSlide,4000);
 
-/* NO Button Jump */
+/* NO BUTTON */
 const noBtn=document.getElementById("noBtn");
 const yesBtn=document.getElementById("yesBtn");
-let moveCount=0;
 
 function moveNo(){
     const maxX=window.innerWidth-noBtn.offsetWidth-10;
     const maxY=window.innerHeight-noBtn.offsetHeight-10;
-    const x=Math.random()*maxX;
-    const y=Math.random()*maxY;
+    noBtn.style.left=Math.random()*maxX+"px";
+    noBtn.style.top=Math.random()*maxY+"px";
     noBtn.style.position="fixed";
-    noBtn.style.left=x+"px";
-    noBtn.style.top=y+"px";
-    moveCount++;
-    if(moveCount>3){
-        yesBtn.style.transform="scale(1.2)";
-    }
 }
-
 noBtn.addEventListener("mouseover",moveNo);
 noBtn.addEventListener("click",function(e){
     e.preventDefault();
     moveNo();
 });
 
-/* YES Screen */
+/* YES SCREEN */
 function sayYes(){
     document.body.innerHTML=`
     <div style="height:100vh;display:flex;justify-content:center;align-items:center;
     background:linear-gradient(135deg,#ff99cc,#ff4d88);color:white;text-align:center;flex-direction:column;">
-        <h1 style="font-family:Pacifico;font-size:3rem;">She Said YES 💕💍</h1>
-        <p style="margin-top:20px;font-size:1.4rem;">
-        Happiest Moment of My Life 🥺💖
-        </p>
+        <h1 style="font-family:Pacifico;font-size:2.5rem;">She Said YES 💕</h1>
+        <p style="margin-top:15px;font-size:1.3rem;">Happiest Moment Ever 🥺💖</p>
     </div>
     `;
 }
 
-/* Floating Hearts */
+/* HEARTS */
 function createHeart(){
     const heart=document.createElement("div");
     heart.classList.add("heart");
@@ -308,7 +310,8 @@ function createHeart(){
     document.body.appendChild(heart);
     setTimeout(()=>heart.remove(),6000);
 }
-setInterval(createHeart,400);
+setInterval(createHeart,500);
+
 </script>
 
 </body>
